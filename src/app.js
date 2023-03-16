@@ -6,6 +6,7 @@ import { bookRouter } from './routes/book.router.js';
 
 const app = express();
 const port = 3000;
+const DATABASE_URL = process.env.DATABASE_URL ?? 'mongodb://mongo:27017/books';
 app.use(cors())
 app.use(bodyParser.json());
 
@@ -13,7 +14,7 @@ app.use('/api/books', bookRouter);app
 
 try {
 	await connect(
-		'mongodb://mongo:27017/books',
+		DATABASE_URL,
 		{
 			useNewUrlParser: true,
 			useUnifiedTopology: true,
